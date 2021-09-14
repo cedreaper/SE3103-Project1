@@ -16,15 +16,16 @@ public class GamePanel {
 
     public enum GameState {
 
-        READY, PLAYING, GAMEOVER
+        READY, PLAYING, WIN, LOSE
     }
+
     private JFrame window;
     private JTextField gameKeyField = new JTextField();
     private JTextField guessField = new JTextField();
     private ArrayList<JButton> alphaButtons = new ArrayList<JButton>();
     private JButton newButton = new JButton("New");
-    private GameState gameState = GameState.READY;
-    private Game game;
+    private GameState gameState = GameState.PLAYING;
+    private Game game = new Game();
     
     
 
@@ -57,8 +58,6 @@ public class GamePanel {
             var temp = (char)(65 + i);
             var temp2 = Character.toLowerCase(temp);
             alphaButtons.add(new JButton( temp2 + ""));
-            System.out.println(alphaButtons.get(i).getText());
-
             alphaButtons.get(i).setEnabled(false);
 
             southPanel.add(alphaButtons.get(i));
@@ -70,10 +69,23 @@ public class GamePanel {
 
         cp.add(BorderLayout.SOUTH, southPanel);
 
+        var canvas = new GameCanvas(this);
+        cp.add(BorderLayout.CENTER, canvas);
+
 
 
         
 
+    }
+
+    public GameState getGameState() {
+
+        return gameState;
+    }
+
+    public Game getGame() {
+
+        return game;
     }
 
     

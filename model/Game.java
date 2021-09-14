@@ -21,6 +21,7 @@ public class Game {
     public Game() {
 
            gameKey = generateGameKey(); 
+           health = 5;
         
     }
 
@@ -33,7 +34,7 @@ public class Game {
             wordPool.add(w);
         }
 
-        return "" + wordPool.get(rand.nextInt(wordPool.size()));
+        return "" + wordPool.get(rand.nextInt(wordPool.size()-1));
         
     }
     

@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Game {
 
-    public enum Words {
+    private enum Words {
 
         communication, science, programming, language, difficulty, artificial, intelligence, attempts, screenshot,
         baseball, windows, learning, electronics, beautiful, internet, database, organization, application, network,
@@ -37,4 +37,13 @@ public class Game {
         
     }
     
+    public int getHealth() {
+
+        return health;
+    }
+
+    public String getGameKey() {
+
+        return gameKey;
+    }
 }

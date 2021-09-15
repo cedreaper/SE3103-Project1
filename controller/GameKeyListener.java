@@ -47,64 +47,49 @@ public class GameKeyListener implements ActionListener {
             panel.getGuessField().setText(panel.getGame().getGuess());
 
         } else {
+
             //alphabet button pressed.. then we can accumulate and solve
-
-            //first check for if we lose or are still playing
-
-            if(panel.getGame().getHealth() > 0) {
-
-                //health is left still then we are still playing the game.. but did we win?
-
-                if(panel.getGameKeyField().getText() != null) {
-
-                    if(panel.getGame().getGuess().equals(panel.getGame().getGameKey())) {
+ 
+            //we need to modify somethings now and disable the button
                         
-                        //if they're the same then we found a winner!
-                        panel.setGameState(GameState.WIN);
-                        panel.getCanvas().repaint();
-
-                            
-                    } else {
-
-                        //ok maybe we didn't yet win, ..so we need to modify somethings now and disable the button
+            button.setEnabled(false);
                         
-                        button.setEnabled(false);
+            // does the button chose match any character in the game key?
                         
-                        // does the button chose match any character in the game key?
-                        
-                        char ch = button.getText().charAt(0);
+            char ch = button.getText().charAt(0);
 
-                        //no? Well then 1 health is being taken away.
-                        if(!panel.getGame().setGuess(ch)) {
+             //no? Well then 1 health is being taken away.
+            if(!panel.getGame().setGuess(ch)) {
 
-                            panel.getGame().setHealth(panel.getGame().getHealth() - 1);
-
-                            //if health is now 0 then set game over
-                            if(panel.getGame().getHealth() == 0) {
-                                
-                                panel.setGameState(GameState.LOSE);
-                            }
-                          
-                            
-                        }
-
-                        panel.getGuessField().setText(panel.getGame().getGuess());
-
-                        panel.getCanvas().repaint();
-  
-                    }
-                }
+                panel.getGame().setHealth(panel.getGame().getHealth() - 1);
             }
-            else if(panel.getGame().getHealth() == 0) {
 
-                //out of health, then game over
-
+            //if health is now 0 then set game over
+            if(panel.getGame().getHealth() == 0) {
+                                
                 panel.setGameState(GameState.LOSE);
             }
+            panel.getGuessField().setText(panel.getGame().getGuess());
 
-        }
+            if(panel.getGame().getGameKey().equals(panel.getGuessField().getText())) {
 
-        
-    }
+                //if they're the same then we found a winner!
+                panel.setGameState(GameState.WIN);
+                
+            }
+
+            //if win or lose disable alphabet buttons
+            if(panel.getGameState() == GameState.LOSE || panel.getGameState() == GameState.WIN) {
+
+                for(var b : panel.getAlphaButtons()) {
+                    
+                    b.setEnabled(false);
+                }
+            } 
+         
     
+            panel.getCanvas().repaint();       
+     
+        }      
+    }    
 }

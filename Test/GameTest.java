@@ -8,7 +8,6 @@ public class GameTest {
 
         //test game key random generation
 
-    
         String gameKey;
 
         for(int i = 0; i < 10; i++) {
@@ -19,6 +18,11 @@ public class GameTest {
             System.out.println(gameKey);
 
         }
+
+        //test setting guesses to swap characters
+
+        Game g = new Game("reel", "....");
+        g.setGuess('e');
 
     }
     

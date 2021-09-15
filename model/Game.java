@@ -15,6 +15,7 @@ public class Game {
 
     private int health;
     private String gameKey;
+    private String guess = "";
     private ArrayList<Words> wordPool = new ArrayList<Words>();
 
 
@@ -22,7 +23,20 @@ public class Game {
 
            gameKey = generateGameKey(); 
            health = 5;
+           
+           //special case for the guess keyfield add periods in place of same letter
+           for(int i = 0; i < gameKey.length(); i++) {
+
+            guess += ".";
+
+            }
         
+    }
+
+    public Game(String gameKey, String guess) {
+
+        this.gameKey = gameKey;
+        this.guess = guess;
     }
 
     public String generateGameKey() {
@@ -46,5 +60,37 @@ public class Game {
     public String getGameKey() {
 
         return gameKey;
+    }
+
+    public String getGuess() {
+
+        return guess;
+    }
+
+    public void setHealth(int health) {
+
+        this.health = health;
+    }
+
+    public boolean setGuess(char ch) {
+
+        char[] tempKey = gameKey.toCharArray();
+        char[] temp = guess.toCharArray();
+
+        boolean flag = false;
+
+        for(int i = 0; i < guess.length(); i++) {
+
+            if(tempKey[i] == ch) {
+
+                temp[i] = ch;
+
+                flag = true;
+            }
+        }
+
+        guess = new String(temp);
+
+        return flag;
     }
 }

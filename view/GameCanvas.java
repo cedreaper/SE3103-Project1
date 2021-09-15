@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Shape;
 
 import javax.swing.JPanel;
 
@@ -79,11 +78,7 @@ public class GameCanvas extends JPanel{
                     g2.fillRect( 50 + (40 * i), 140, 30, 30);
 
                 }
-
-            }
-
-
-            
+            }          
         }
     }
 }
